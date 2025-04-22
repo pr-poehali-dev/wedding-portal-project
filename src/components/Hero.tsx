@@ -22,7 +22,7 @@ const Hero = () => {
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white">
-                Организуйте свадьбу своей мечты с СвадьбаПлюс
+                Организуйте свадьбу своей мечты с ПРОСвадьбу
               </h1>
               <p className="max-w-[600px] text-gray-100 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Все лучшие свадебные услуги города в одном месте. Ведущие, автомобили, банкетные залы,
