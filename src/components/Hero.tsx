@@ -4,26 +4,38 @@ import { Heart } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="py-12 md:py-20 hero-gradient">
-      <div className="container px-4 md:px-6">
+    <section className="py-12 md:py-20 hero-gradient relative overflow-hidden">
+      {/* Добавляем фоновый градиент поверх изображения */}
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-900/70 to-pink-900/50 z-10"></div>
+      
+      {/* Фоновое изображение */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+          alt="Свадебная церемония" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+      
+      <div className="container px-4 md:px-6 relative z-20">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white">
                 Организуйте свадьбу своей мечты с СвадьбаПлюс
               </h1>
-              <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[600px] text-gray-100 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Все лучшие свадебные услуги города в одном месте. Ведущие, автомобили, банкетные залы,
                 декораторы и артисты — всё для вашего идеального дня.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Button asChild size="lg" className="bg-wedding hover:bg-wedding-dark">
+              <Button asChild size="lg" className="bg-white text-purple-900 hover:bg-gray-100">
                 <Link to="/services/all">
                   Найти услуги
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="text-white border-white hover:bg-white/10">
                 <Link to="/become-partner">
                   Стать партнёром
                 </Link>
@@ -32,9 +44,9 @@ const Hero = () => {
           </div>
           <div className="mx-auto lg:order-last flex items-center justify-center relative">
             <img
-              src="/placeholder.svg"
-              alt="Свадебное торжество"
-              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
+              src="https://images.unsplash.com/photo-1525328302834-764f29849fe1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80"
+              alt="Свадебный букет"
+              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last shadow-lg"
               width={500}
               height={310}
             />
