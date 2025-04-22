@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ServiceCard from "./ServiceCard";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Это имитация данных, в реальном приложении они будут приходить с сервера
 const dummyServices = {
@@ -98,53 +99,54 @@ const dummyServices = {
 
 const CategorySection = () => {
   const [activeTab, setActiveTab] = useState("hosts");
+  const isMobile = useIsMobile();
 
   return (
-    <section className="py-12 bg-wedding-muted">
-      <div className="container">
+    <section className="py-10 md:py-12 bg-wedding-muted">
+      <div className="container px-4 md:px-6">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Лучшие свадебные услуги</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">Лучшие свадебные услуги</h2>
+          <p className="text-muted-foreground text-sm sm:text-base max-w-2xl mx-auto">
             Выбирайте из сотен проверенных профессионалов для вашего особенного дня
           </p>
         </div>
 
         <Tabs defaultValue="hosts" className="w-full" onValueChange={setActiveTab}>
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-6 sm:mb-8">
             <TabsList className="grid grid-cols-3 w-full max-w-md">
-              <TabsTrigger value="hosts">Ведущие</TabsTrigger>
-              <TabsTrigger value="cars">Автомобили</TabsTrigger>
-              <TabsTrigger value="venues">Банкетные залы</TabsTrigger>
+              <TabsTrigger value="hosts" className="text-xs sm:text-sm">Ведущие</TabsTrigger>
+              <TabsTrigger value="cars" className="text-xs sm:text-sm">Автомобили</TabsTrigger>
+              <TabsTrigger value="venues" className="text-xs sm:text-sm">Банкетные залы</TabsTrigger>
             </TabsList>
           </div>
 
-          <TabsContent value="hosts" className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {dummyServices.hosts.map((service) => (
+          <TabsContent value="hosts" className="space-y-6 sm:space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {dummyServices.hosts.slice(0, isMobile ? 2 : 3).map((service) => (
                 <ServiceCard key={service.id} {...service} />
               ))}
             </div>
           </TabsContent>
 
-          <TabsContent value="cars" className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {dummyServices.cars.map((service) => (
+          <TabsContent value="cars" className="space-y-6 sm:space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {dummyServices.cars.slice(0, isMobile ? 2 : 3).map((service) => (
                 <ServiceCard key={service.id} {...service} />
               ))}
             </div>
           </TabsContent>
 
-          <TabsContent value="venues" className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {dummyServices.venues.map((service) => (
+          <TabsContent value="venues" className="space-y-6 sm:space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {dummyServices.venues.slice(0, isMobile ? 2 : 3).map((service) => (
                 <ServiceCard key={service.id} {...service} />
               ))}
             </div>
           </TabsContent>
         </Tabs>
 
-        <div className="mt-10 text-center">
-          <Button asChild variant="outline" className="gap-1">
+        <div className="mt-8 sm:mt-10 text-center">
+          <Button asChild variant="outline" className="gap-1 w-full sm:w-auto">
             <Link to={`/services/${activeTab}`}>
               Показать все {activeTab === "hosts" ? "ведущие" : activeTab === "cars" ? "автомобили" : "банкетные залы"}
               <ChevronRight className="h-4 w-4" />

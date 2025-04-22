@@ -1,7 +1,8 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, MessageCircle, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Star } from "lucide-react";
 
 interface ServiceCardProps {
   id: string;
@@ -15,36 +16,29 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ id, title, category, description, rating, price, imageUrl }: ServiceCardProps) => {
   return (
-    <Card className="overflow-hidden service-card">
+    <Card className="overflow-hidden h-full flex flex-col">
       <div className="aspect-video relative overflow-hidden">
         <img 
           src={imageUrl} 
           alt={title} 
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
-        <div className="absolute top-2 right-2 bg-white/90 rounded-full px-2 py-1 flex items-center text-sm font-medium">
-          <Star className="h-4 w-4 text-yellow-500 mr-1 inline" />
-          {rating}
-        </div>
+        <Badge className="absolute top-2 right-2 bg-wedding">{category}</Badge>
       </div>
-      <CardHeader className="p-4 pb-2">
-        <div className="text-xs text-wedding uppercase font-semibold tracking-wide">{category}</div>
-        <CardTitle className="text-lg mt-1">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="p-4 pt-0">
-        <CardDescription className="line-clamp-2 text-sm">{description}</CardDescription>
-        <div className="mt-3 font-semibold text-wedding">{price}</div>
+      <CardContent className="pt-4 flex-grow">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="font-semibold text-lg">{title}</h3>
+          <div className="flex items-center gap-1 text-sm">
+            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+            <span>{rating}</span>
+          </div>
+        </div>
+        <p className="text-sm text-muted-foreground line-clamp-3">{description}</p>
+        <p className="font-medium text-sm mt-2 text-wedding">{price}</p>
       </CardContent>
-      <CardFooter className="flex justify-between p-4 pt-0">
-        <Button size="sm" variant="outline" className="flex items-center gap-1">
-          <Calendar className="h-4 w-4" />
-          Даты
-        </Button>
-        <Button size="sm" asChild>
-          <Link to={`/service/${id}`} className="flex items-center gap-1">
-            <MessageCircle className="h-4 w-4" />
-            Связаться
-          </Link>
+      <CardFooter className="pt-0">
+        <Button asChild variant="outline" className="w-full">
+          <Link to={`/service/${id}`}>Подробнее</Link>
         </Button>
       </CardFooter>
     </Card>
